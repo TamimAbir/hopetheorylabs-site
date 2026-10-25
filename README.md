@@ -1,27 +1,34 @@
-# Hope Theory Labs website
+# Hope Theory Labs — company site
 
-**Live (GitHub Pages):** https://tamimabir.github.io/hopetheorylabs-site/
+Next.js (App Router) + Tailwind CSS v4 + Framer Motion. Static export.
 
-One-page site for Hope Theory Labs (Dhaka).
+**Live:** https://hopetheorylabs-site.vercel.app
 
-## Stack
-
-Next.js (App Router, static export) · TypeScript · Tailwind · Framer Motion
-
-## Local
+## Commands
 
 ```bash
 npm install
-npm run dev
-npm run build
+npm run dev          # http://localhost:3000
+npm run build        # writes out/
+npm run lint
+npm run typecheck
 ```
 
-## GitHub Pages
+## Deploy (Vercel)
 
-Deploy is automatic on every push to `main` via `.github/workflows/pages.yml`.
+1. Import this repo in Vercel (Framework: Next.js, defaults).
+2. Production branch: `main` (or `issue-5`).
+3. Preview deploys per PR.
 
-1. Repo → **Settings → Pages** → Source: **GitHub Actions**
-2. Push to `main` (or run workflow manually under Actions)
-3. Site: https://tamimabir.github.io/hopetheorylabs-site/
+Static export (`output: "export"`) — no server runtime required.
 
-`GITHUB_PAGES=true` sets `basePath` to `/hopetheorylabs-site` for the project site URL.
+## Stack notes
+
+- Brand tokens: `docs/BRAND.md` → `app/globals.css` `@theme`
+- Copy: `content/en.ts` / `content/bn.ts` (EN / বাংলা toggle)
+- Design rules: `docs/DESIGN_RULES.md`
+- QA gates: `docs/QA.md`
+
+## WhatsApp
+
+All CTAs use `https://wa.me/8801718463471`.
