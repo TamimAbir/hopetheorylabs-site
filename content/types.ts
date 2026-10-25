@@ -21,53 +21,15 @@ export interface SiteContent {
     pricingHref: string;
     mockupDescription: string;
   };
-  howItWorks: {
-    heading: string;
-    steps: string[];
-  };
-  whatYouGet: {
-    heading: string;
-    items: string[];
-  };
-  speedSlider: {
-    label: string;
-    before: string;
-    after: string;
-    aria: string;
-  };
-  work: {
-    heading: string;
-    title: string;
-    tag: string;
-    description: string;
-    link: string;
-  };
-  pricing: {
-    heading: string;
-    base: string;
-    founding: string;
-    cta: string;
-  };
-  earlyAccess: {
-    heading: string;
-    tag: string;
-    items: string[];
-    text: string;
-  };
-  about: {
-    heading: string;
-    text: string;
-  };
-  contact: {
-    heading: string;
-    phone: string;
-    phoneHref: string;
-    email: string;
-    note: string;
-  };
-  footer: {
-    text: string;
-  };
+  howItWorks: { heading: string; steps: string[] };
+  whatYouGet: { heading: string; items: string[] };
+  speedSlider: { label: string; before: string; after: string; aria: string };
+  work: { heading: string; title: string; tag: string; description: string; link: string };
+  pricing: { heading: string; base: string; founding: string; cta: string };
+  earlyAccess: { heading: string; tag: string; items: string[]; text: string };
+  about: { heading: string; text: string };
+  contact: { heading: string; phone: string; phoneHref: string; email: string; note: string };
+  footer: { text: string };
 }
 
 export const whatsappOrderLink =

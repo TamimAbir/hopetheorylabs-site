@@ -61,13 +61,10 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const lang = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
-
   const setLang = useCallback((next: Lang) => setLangEverywhere(next), []);
-
   return (
     <LanguageContext.Provider value={{ lang, setLang, content: CONTENT[lang] }}>
       {children}
