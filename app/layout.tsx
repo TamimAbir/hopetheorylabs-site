@@ -30,7 +30,7 @@ const hindSiliguri = Hind_Siliguri({
   variable: "--font-hind-siliguri",
 });
 
-const siteUrl = "https://hopetheorylabs.vercel.app";
+const siteUrl = "https://tamimabir.github.io/hopetheorylabs-site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -85,11 +85,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       ].join(" ")}
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.add('js')",
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

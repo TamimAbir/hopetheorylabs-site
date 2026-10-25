@@ -1,10 +1,14 @@
 # Hope Theory Labs website
 
-Production-ready one-pager for Hope Theory Labs (Dhaka).
+**Live (GitHub Pages):** https://tamimabir.github.io/hopetheorylabs-site/
 
-**Stack:** Next.js App Router · TypeScript · Tailwind · Framer Motion · static export
+One-page site for Hope Theory Labs (Dhaka).
 
-## Run
+## Stack
+
+Next.js (App Router, static export) · TypeScript · Tailwind · Framer Motion
+
+## Local
 
 ```bash
 npm install
@@ -12,11 +16,12 @@ npm run dev
 npm run build
 ```
 
-## Deploy
+## GitHub Pages
 
-Vercel (recommended) or any static host of the `out/` folder after `npm run build`.
+Deploy is automatic on every push to `main` via `.github/workflows/pages.yml`.
 
-## Notes
+1. Repo → **Settings → Pages** → Source: **GitHub Actions**
+2. Push to `main` (or run workflow manually under Actions)
+3. Site: https://tamimabir.github.io/hopetheorylabs-site/
 
-- Bangla strings in `content/bn.ts` still need human review before final EN/BN launch.
-- Rollers Republic screenshots: add under `public/work/` when ready.
+`GITHUB_PAGES=true` sets `basePath` to `/hopetheorylabs-site` for the project site URL.

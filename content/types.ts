@@ -10,7 +10,7 @@ export interface SiteContent {
     whatsapp: string;
     menu: string;
     skip: string;
-    language: string;
+    language?: string;
   };
   hero: {
     heading: string;
@@ -33,7 +33,7 @@ export interface SiteContent {
     label: string;
     before: string;
     after: string;
-    aria: string;
+    aria?: string;
   };
   work: {
     heading: string;

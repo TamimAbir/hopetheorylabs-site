@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hopetheorylabs.vercel.app/sitemap.xml
+Sitemap: https://tamimabir.github.io/hopetheorylabs-site/sitemap.xml
