@@ -1,55 +1,50 @@
-import { en as content } from "@/content/en";
+"use client";
 
-/*
-  Before/after loading comparison. Step 2 ships the static placeholder;
-  Step 5 makes it draggable + keyboard operable (range input). Decorative
-  skeletons are aria-hidden; the only visible text is the required
-  "Illustrative only" label from the content files — no numbers, ever.
-*/
+import { useState } from "react";
+import { useContent } from "./LanguageProvider";
+
 export function SpeedSlider() {
+  const content = useContent();
+  const [position, setPosition] = useState(55);
+
+  const skeleton = (tone: string) => (
+    <div className="mt-4 space-y-3">
+      <div className={`h-2 rounded-full ${tone} w-2/3`} />
+      <div className={`h-2 rounded-full ${tone} w-full`} />
+      <div className={`h-2 rounded-full ${tone} w-5/6`} />
+      <div className={`h-2 rounded-full ${tone} w-full`} />
+      <div className={`h-2 rounded-full ${tone} w-1/2`} />
+      <div className={`h-2 rounded-full ${tone} w-3/4`} />
+      <div className={`h-2 rounded-full ${tone} w-full`} />
+      <div className={`h-2 rounded-full ${tone} w-2/3`} />
+      <div className={`h-2 rounded-full ${tone} w-5/6`} />
+      <div className={`h-2 rounded-full ${tone} w-1/2`} />
+    </div>
+  );
+
   return (
     <div className="mt-16 border-t border-paper/10 pt-16">
-      <div className="mt-8 grid gap-10 md:grid-cols-2" aria-hidden="true">
+      <div className="relative mt-2 select-none" aria-hidden="true">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40">
-            {content.speedSlider.before}
-          </p>
-          <div className="mt-4 space-y-3">
-            {[
-              "w-2/3",
-              "w-full",
-              "w-5/6",
-              "w-full",
-              "w-1/2",
-              "w-3/4",
-              "w-full",
-              "w-2/3",
-              "w-5/6",
-              "w-1/2",
-            ].map((width, i) => (
-              <div key={i} className={`h-2 rounded-full bg-paper/10 ${width}`} />
-            ))}
-          </div>
-        </div>
-        <div className="relative">
-          <div
-            aria-hidden="true"
-            className="absolute -left-5 top-0 hidden h-full w-px bg-teal/40 md:block"
-          />
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-teal">
-            {content.speedSlider.after}
-          </p>
-          <div className="mt-4 space-y-3">
-            <div className="h-6 w-1/2 rounded-md bg-teal/25" />
-            <div className="h-2 w-full rounded-full bg-paper/15" />
-            <div className="h-2 w-5/6 rounded-full bg-paper/15" />
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-teal">{content.speedSlider.after}</p>
+          {skeleton("bg-paper/15")}
+          <div className="mt-2 flex items-center gap-3">
             <div className="h-10 w-36 rounded-md bg-teal/70" />
+            <div className="h-2 w-1/2 rounded-full bg-paper/15" />
           </div>
         </div>
+        <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40">{content.speedSlider.before}</p>
+          {skeleton("bg-paper/10")}
+          <div className="mt-2 flex items-center gap-3">
+            <div className="h-10 w-36 rounded-md bg-paper/10" />
+            <div className="h-3 w-2/3 rounded-full bg-teal/25" />
+          </div>
+        </div>
+        <div className="pointer-events-none absolute bottom-0 top-0 w-px bg-teal" style={{ left: `${position}%` }} />
       </div>
-      <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/60">
-        {content.speedSlider.label}
-      </p>
+      <input type="range" min={0} max={100} step={1} value={position} onChange={(e) => setPosition(Number(e.target.value))} aria-label={content.speedSlider.aria} className="mt-6 h-9 w-full cursor-ew-resize appearance-none bg-transparent accent-teal" />
+      <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/60">{content.speedSlider.label}</p>
     </div>
   );
 }

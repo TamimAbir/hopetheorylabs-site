@@ -1,7 +1,6 @@
 import type { SiteContent } from "./types";
 import { whatsappLink, whatsappOrderLink } from "./types";
 
-// All copy below is verbatim from docs/SPEC.md ("Section-by-section layout").
 export const en: SiteContent = {
   header: {
     wordmark: "hope theory labs",
@@ -14,16 +13,16 @@ export const en: SiteContent = {
     whatsapp: "WhatsApp",
     menu: "Menu",
     skip: "Skip to content",
+    language: "Site language",
   },
   hero: {
     heading: "Fast websites for Bangladeshi businesses.",
-    subheading:
-      "Mobile-first sites with WhatsApp ordering built in. We'll build a free concept of yours first.",
+    subheading: "Mobile-first sites with WhatsApp ordering built in. We'll build a free concept of yours first.",
     primaryCta: "Message us on WhatsApp",
     whatsappLink: whatsappOrderLink,
     secondaryCta: "See pricing",
     pricingHref: "#pricing",
-    mockupDescription: "Preview of the WhatsApp ordering flow — placeholder for now.",
+    mockupDescription: "Animated preview of the WhatsApp ordering flow: browse sample products, add one to the cart, order on WhatsApp and see the WhatsApp message. Generic sample products only.",
   },
   howItWorks: {
     heading: "How it works",
@@ -35,17 +34,13 @@ export const en: SiteContent = {
   },
   whatYouGet: {
     heading: "What you get",
-    items: [
-      "Fast on mobile",
-      "Orders straight to your WhatsApp",
-      "Cash on delivery",
-      "Easy to update",
-    ],
+    items: ["Fast on mobile", "Orders straight to your WhatsApp", "Cash on delivery", "Easy to update"],
   },
   speedSlider: {
     label: "Illustrative only",
     before: "Before",
     after: "After",
+    aria: "Compare page load speed — before and after",
   },
   work: {
     heading: "Work",
@@ -57,8 +52,7 @@ export const en: SiteContent = {
   pricing: {
     heading: "Pricing",
     base: "Websites from ৳25,000.",
-    founding:
-      "Founding clients: ৳15,000, in exchange for a short review and permission to show your site.",
+    founding: "Founding clients: ৳15,000, in exchange for a short review and permission to show your site.",
     cta: "Ask about a free concept",
   },
   earlyAccess: {
