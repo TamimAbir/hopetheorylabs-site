@@ -1,35 +1,34 @@
-# hopetheorylabs-site
+# Hope Theory Labs — company site
 
-The one-page website for **Hope Theory Labs**, a small web studio in Dhaka. Goal: a shop owner taps WhatsApp.
-Live target: https://hopetheorylabs.vercel.app (Vercel free tier). Production deploys are on hold until Fahad approves.
+Next.js (App Router) + Tailwind CSS v4 + Framer Motion. Static export.
 
-Stack: Next.js (App Router, TypeScript) · Tailwind CSS · Framer Motion. Static export.
+**Live:** https://hopetheorylabs-site.vercel.app
 
-> **Status:** scaffold only. The site is built issue by issue from the project board "Hope Theory Labs Website".
-
-## Run it
-
-Requires Node.js 20+.
+## Commands
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000
+npm run dev          # http://localhost:3000
+npm run build        # writes out/
 npm run lint
 npm run typecheck
-npm run build      # once Step 1 sets output: "export", the static site lands in out/
 ```
 
-## Single source of truth (read before coding)
+## Deploy (Vercel)
 
-| File | What |
-| --- | --- |
-| [docs/SPEC.md](docs/SPEC.md) | Full build spec: copy, sections, components, 10 build steps (canonical) |
-| [docs/BRAND.md](docs/BRAND.md) | Colours, fonts, voice |
-| [docs/DESIGN_RULES.md](docs/DESIGN_RULES.md) | Anti-AI-look bans and dos, motion rules |
-| [docs/QA.md](docs/QA.md) | Quality bar every PR must meet |
-| [AGENTS.md](AGENTS.md) | How coding agents pick up and ship work |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Branch, PR and review flow |
+1. Import this repo in Vercel (Framework: Next.js, defaults).
+2. Production deploys from the branch you choose (`issue-5` or `main`).
+3. Preview deploys per PR.
 
-## Deploy
+Static export (`output: "export"`) — no server runtime required.
 
-The repo is connected to Vercel project `hopetheorylabs`. Every PR gets a preview deploy. Nothing is promoted to production without Fahad's OK.
+## Stack notes
+
+- Brand tokens: `docs/BRAND.md` → `app/globals.css` `@theme`
+- Copy: `content/en.ts` / `content/bn.ts` (EN / বাংলা toggle)
+- Design rules: `docs/DESIGN_RULES.md`
+- QA gates: `docs/QA.md`
+
+## WhatsApp
+
+All CTAs use `https://wa.me/8801718463471` (order prefill where specified in SPEC).
