@@ -1,35 +1,36 @@
-# hopetheorylabs-site
+# hopetheorylabs-site (TamimAbir fork)
 
-The one-page website for **Hope Theory Labs**, a small web studio in Dhaka. Goal: a shop owner taps WhatsApp.
-Live target: https://hopetheorylabs.vercel.app (Vercel free tier). Production deploys are on hold until Fahad approves.
+One-page website for **Hope Theory Labs** — small web studio in Dhaka.
 
-Stack: Next.js (App Router, TypeScript) · Tailwind CSS · Framer Motion. Static export.
+**Live target:** https://hopetheorylabs.vercel.app  
+**Stack:** Next.js (App Router, TypeScript) · Tailwind CSS · Framer Motion · static export
 
-> **Status:** scaffold only. The site is built issue by issue from the project board "Hope Theory Labs Website".
+## What's on this fork
 
-## Run it
+Branch `finish-launch` adds:
 
-Requires Node.js 20+.
+- **Step 6** — SEO metadata, Open Graph, Twitter card, JSON-LD ProfessionalService, robots.txt, sitemap.xml
+- **Step 8** — polished 404 page + HT monogram `app/icon.svg`
+
+Upstream open PRs still hold Steps 3–5 (i18n, LabsBackground, motion). Merge those on the main repo, or cherry-pick `issue-5` into this fork for a complete local build.
+
+## Still required before production
+
+1. Merge upstream PRs #16 → #17 → #18 (or sync `issue-5`)
+2. Bangla copy review (`content/bn.ts`) — you + Fahad
+3. Step 7 — Lighthouse mobile 90+ / JS budget
+4. Step 9 — full QA checklist
+5. Real Rollers Republic screenshots in `public/work/`
+6. Fahad production approval
+
+## Run
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000
-npm run lint
-npm run typecheck
-npm run build      # once Step 1 sets output: "export", the static site lands in out/
+npm run dev
+npm run lint && npm run typecheck && npm run build
 ```
 
-## Single source of truth (read before coding)
+## Spec sources
 
-| File | What |
-| --- | --- |
-| [docs/SPEC.md](docs/SPEC.md) | Full build spec: copy, sections, components, 10 build steps (canonical) |
-| [docs/BRAND.md](docs/BRAND.md) | Colours, fonts, voice |
-| [docs/DESIGN_RULES.md](docs/DESIGN_RULES.md) | Anti-AI-look bans and dos, motion rules |
-| [docs/QA.md](docs/QA.md) | Quality bar every PR must meet |
-| [AGENTS.md](AGENTS.md) | How coding agents pick up and ship work |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Branch, PR and review flow |
-
-## Deploy
-
-The repo is connected to Vercel project `hopetheorylabs`. Every PR gets a preview deploy. Nothing is promoted to production without Fahad's OK.
+See `docs/SPEC.md`, `docs/BRAND.md`, `docs/DESIGN_RULES.md`, `docs/QA.md`.
