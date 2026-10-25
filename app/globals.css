@@ -1,39 +1,102 @@
 @import "tailwindcss";
 
-/*
-  Brand tokens — docs/BRAND.md (single source of truth).
-  tealDark is exposed as `teal-dark` (Tailwind v4 dash-cases custom keys).
-*/
 @theme {
-  --color-ink: #0f1b2d; /* main background, dark sections, text on teal buttons */
-  --color-teal: #14b8a6; /* buttons, highlights, particles — never body text on light */
-  --color-teal-dark: #0f766e; /* links and teal text on light backgrounds */
-  --color-paper: #f8fafc; /* light sections, text on navy */
-  --color-slate: #475569; /* secondary text on light backgrounds */
-
+  --color-ink: #0f1b2d;
+  --color-teal: #14b8a6;
+  --color-teal-dark: #0f766e;
+  --color-paper: #f8fafc;
+  --color-slate: #475569;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
   --font-bangla: var(--font-hind-siliguri), var(--font-inter), ui-sans-serif, sans-serif;
 }
 
-/* Motion: anchor scrolling eases only when the user has not asked for reduced motion. */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+html {
+  background-color: var(--color-ink);
+}
+body {
+  min-height: 100vh;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Crisp 2px teal focus rings with offset (docs/DESIGN_RULES.md). */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+[data-lang="bn"] {
+  --font-sans: var(--font-hind-siliguri), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-heading: var(--font-hind-siliguri), var(--font-inter), ui-sans-serif, sans-serif;
+}
+
+:root {
+  --ease-signature: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ms: 600ms;
+}
+
+@keyframes word-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.word-reveal .word {
+  display: inline-block;
+  animation: word-in var(--motion-ms) var(--ease-signature) both;
+  animation-delay: calc(var(--word-i, 0) * 60ms);
+}
+
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--motion-ms) var(--ease-signature), transform var(--motion-ms) var(--ease-signature);
+}
+html.js .reveal.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cta .cta-icon { transition: transform 400ms var(--ease-signature); }
+.cta:hover .cta-icon,
+.cta:focus-visible .cta-icon { transform: translateX(3px); }
+.cta-bubble {
+  position: absolute;
+  top: -0.375rem;
+  left: -0.375rem;
+  display: inline-flex;
+  height: 0.75rem;
+  width: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-ink);
+  border-radius: 9999px;
+  background: var(--color-paper);
+  opacity: 0;
+  transition: opacity 400ms var(--ease-signature), scale 400ms var(--ease-signature);
+  scale: 0.4;
+  pointer-events: none;
+}
+.cta:hover .cta-bubble,
+.cta:focus-visible .cta-bubble { opacity: 1; scale: 1; }
+
+.step .step-text { transition: color var(--motion-ms) var(--ease-signature); }
+.step[data-active="true"] .step-text { color: var(--color-paper); }
+.step .step-number {
+  transition: color var(--motion-ms) var(--ease-signature), scale var(--motion-ms) var(--ease-signature);
+}
+.step[data-active="true"] .step-number { scale: 1.25; }
+
+@media (prefers-reduced-motion: reduce) {
+  .word-reveal .word { animation: none; opacity: 1; transform: none; }
+  html.js .reveal { opacity: 1; transform: none; transition: none; }
+  .cta .cta-icon, .cta-bubble, .step .step-text, .step .step-number { transition: none; }
+}
+
 :focus-visible {
   outline: 2px solid var(--color-teal);
   outline-offset: 2px;
 }
-
-/* Custom mobile-menu marker: we draw our own icon inside the <summary>. */
-summary::-webkit-details-marker {
-  display: none;
-}
-summary {
-  list-style: none;
-}
+summary::-webkit-details-marker { display: none; }
+summary { list-style: none; }
