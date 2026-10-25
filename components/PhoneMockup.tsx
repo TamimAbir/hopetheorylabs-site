@@ -1,25 +1,42 @@
-/*
-  Fixed-size decorative placeholder for the WhatsApp order-flow demo.
-  Step 5 replaces the skeleton bars with the real HTML/CSS loop.
-  Fixed dimensions per breakpoint so the page has zero layout shift (CLS < 0.1).
-  Decorative: aria-hidden (the visible hero carries an sr-only description).
-*/
+"use client";
+
+import { useEffect, useState } from "react";
+
+const FRAME_MS = 1600;
+const FRAMES = 4;
+
 export function PhoneMockup() {
+  const [frame, setFrame] = useState(0);
+
+  useEffect(() => {
+    if (typeof window.matchMedia === "function") {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+      if (reduced.matches) return;
+    }
+    const timer = window.setInterval(() => {
+      setFrame((f) => (f + 1) % FRAMES);
+    }, FRAME_MS);
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
-    <div
-      aria-hidden="true"
-      className="h-[560px] w-[280px] rounded-[2.25rem] border border-paper/15 bg-paper/5 md:h-[600px] md:w-[300px]"
-    >
-      <div className="flex h-full flex-col p-4">
+    <div aria-hidden="true" className="h-[560px] w-[280px] rounded-[2.25rem] border border-paper/15 bg-paper/5 p-4 md:h-[600px] md:w-[300px]">
+      <div className="flex h-full flex-col">
         <div className="mx-auto h-1.5 w-16 rounded-full bg-paper/20" />
-        <div className="mt-6 space-y-3">
-          <div className="h-8 w-40 rounded-md bg-paper/10" />
-          <div className="h-2 w-52 self-end rounded-full bg-paper/10" />
-          <div className="h-2 w-44 self-end rounded-full bg-paper/10" />
+        <div className={`mt-6 space-y-3 transition-all duration-500 [transition-timing-function:var(--ease-signature)] ${frame >= 1 ? "-translate-y-2 opacity-40" : ""}`}>
+          <div className="h-10 w-full rounded-md bg-paper/10" />
+          <div className="h-10 w-full rounded-md bg-paper/10" />
+          <div className="h-10 w-2/3 rounded-md bg-paper/10" />
         </div>
-        <div className="mt-auto space-y-3 border-t border-paper/10 pt-4">
-          <div className="h-2 w-32 rounded-full bg-paper/10" />
-          <div className="h-10 w-full rounded-md bg-teal/25" />
+        <div className={`mt-4 flex items-center justify-between transition-opacity duration-500 [transition-timing-function:var(--ease-signature)] ${frame >= 1 && frame < 3 ? "opacity-100" : "opacity-0"}`}>
+          <span className="font-mono text-[11px] uppercase tracking-widest text-paper/50">Cart · 1 item</span>
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal font-mono text-xs text-ink">1</span>
+        </div>
+        <div className="mt-auto space-y-3">
+          <div className={`h-10 w-full rounded-md bg-teal/25 transition-opacity duration-500 [transition-timing-function:var(--ease-signature)] ${frame < 3 ? "opacity-100" : "opacity-30"}`} />
+        </div>
+        <div className={`mt-3 w-fit max-w-full rounded-xl rounded-bl-sm bg-paper/90 px-3 py-2 text-xs leading-snug text-ink transition-all duration-500 [transition-timing-function:var(--ease-signature)] ${frame >= 3 ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"}`}>
+          Hi! I&apos;d like to order: 1 x Sample item. Cash on delivery.
         </div>
       </div>
     </div>
