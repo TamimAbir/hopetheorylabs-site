@@ -1,9 +1,3 @@
-/*
-  Shared shape for content/en.ts and content/bn.ts.
-  Copy content is defined in docs/SPEC.md ("Section-by-section layout") — the
-  single source of truth. No other copy may be invented.
-*/
-
 export interface NavLink {
   label: string;
   href: string;
@@ -16,6 +10,7 @@ export interface SiteContent {
     whatsapp: string;
     menu: string;
     skip: string;
+    language: string;
   };
   hero: {
     heading: string;
@@ -38,6 +33,7 @@ export interface SiteContent {
     label: string;
     before: string;
     after: string;
+    aria: string;
   };
   work: {
     heading: string;
